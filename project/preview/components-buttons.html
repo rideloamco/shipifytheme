@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;padding:24px;background:var(--loam-black);color:#fff;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+.btn{font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:14px;padding:16px 26px;border:2px solid #fff;background:#0A0A0A;color:#fff;cursor:pointer;transition:all 120ms cubic-bezier(.85,0,.15,1);display:inline-flex;align-items:center;gap:10px;}
+.btn:hover{background:#DAEE01;color:#0A0A0A;border-color:#DAEE01;}
+.btn-primary{background:#DAEE01;color:#0A0A0A;border-color:#DAEE01;}
+.btn-primary:hover{background:#B8C800;border-color:#B8C800;}
+.btn-ghost{border-color:transparent;background:transparent;}
+.btn-ghost:hover{background:transparent;color:#DAEE01;border-color:transparent;}
+.btn-sm{font-size:12px;padding:10px 16px;letter-spacing:.14em;}
+.arr{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;}
+</style></head><body>
+<button class="btn btn-primary">SHOP ALL <svg class="arr" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+<button class="btn">ADD TO CART</button>
+<button class="btn btn-sm">SHOP ALL</button>
+<button class="btn btn-ghost">ADD TO CART →</button>
+</body></html>

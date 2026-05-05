@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;padding:0;background:var(--loam-black);color:var(--fg);}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.sw{padding:28px 22px;display:flex;flex-direction:column;justify-content:space-between;min-height:170px;border-right:1px solid var(--loam-charcoal);}
+.sw:last-child{border-right:0;}
+.sw .name{font-family:var(--font-display);font-size:28px;letter-spacing:.01em;line-height:1;}
+.sw .hex{font-family:var(--font-mono);font-size:12px;margin-top:4px;}
+.sw .role{font-family:var(--font-body);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;}
+</style></head><body>
+<div class="row">
+  <div class="sw" style="background:#0A0A0A;color:#fff;">
+    <div class="role" style="color:var(--loam-neon);">PRIMARY · BG</div>
+    <div><div class="name">BLACK</div><div class="hex">#0A0A0A</div></div>
+  </div>
+  <div class="sw" style="background:#FFFFFF;color:#0A0A0A;">
+    <div class="role">INVERSE · PAPER</div>
+    <div><div class="name">WHITE</div><div class="hex">#FFFFFF</div></div>
+  </div>
+  <div class="sw" style="background:#DAEE01;color:#0A0A0A;">
+    <div class="role">ACCENT · ONE-PER-VIEW</div>
+    <div><div class="name">NEON</div><div class="hex">#DAEE01</div></div>
+  </div>
+</div>
+</body></html>

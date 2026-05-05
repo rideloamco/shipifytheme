@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;padding:24px;background:var(--loam-black);color:#fff;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
+.card{background:#0A0A0A;border:2px solid #fff;display:flex;flex-direction:column;transition:border-color 120ms;}
+.card:hover{border-color:#DAEE01;}
+.imgbox{aspect-ratio:1;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:var(--loam-graphite);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;border-bottom:2px solid #fff;}
+.body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px;}
+.name{font-family:var(--font-display);text-transform:uppercase;font-size:22px;letter-spacing:.02em;line-height:1;}
+.row{display:flex;align-items:baseline;gap:10px;margin-top:8px;}
+.price{font-family:var(--font-mono);font-weight:700;font-size:20px;}
+.rrp{font-family:var(--font-mono);font-size:11px;color:var(--loam-graphite);text-decoration:line-through;}
+.tag{position:absolute;top:10px;left:10px;font-family:var(--font-mono);font-weight:700;font-size:10px;letter-spacing:.12em;background:#DAEE01;color:#0A0A0A;padding:4px 8px;}
+.imgwrap{position:relative;}
+.spec{font-family:var(--font-body);font-size:12px;color:var(--loam-ash);}
+</style></head><body>
+<div class="card">
+  <div class="imgwrap"><div class="imgbox">JERSEY · 4:3</div><div class="tag">NEW</div></div>
+  <div class="body"><div class="name">Graft Jersey</div><div class="spec">Long-sleeve · 200gsm · Mud-shedding weave</div><div class="row"><span class="price">£65</span><span class="rrp">£180 RRP</span></div></div>
+</div>
+<div class="card">
+  <div class="imgwrap"><div class="imgbox">TROUSERS</div></div>
+  <div class="body"><div class="name">Loam Trail Trouser</div><div class="spec">4-way stretch · Articulated knee</div><div class="row"><span class="price">£89</span><span class="rrp">£220 RRP</span></div></div>
+</div>
+<div class="card">
+  <div class="imgwrap"><div class="imgbox">TEE</div><div class="tag" style="background:#fff;">RESTOCKED</div></div>
+  <div class="body"><div class="name">Dirt Cult Tee</div><div class="spec">Heavyweight cotton · Box fit</div><div class="row"><span class="price">£32</span><span class="rrp">£60 RRP</span></div></div>
+</div>
+</body></html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LOAM CO | Mountain Bike Clothing & Gear for Trail Riders</title>
+<meta name="description" content="LOAM CO creates durable, breathable, and stylish mountain bike apparel. Shop MTB T-shirts, socks, hats, and more — built for the trails, made for riders.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin: 0; }
+  #root { min-height: 100vh; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Components.jsx"></script>
+<script type="text/babel">
+const { useState } = React;
+function App() {
+  const [cart, setCart] = useState([]);
+  const [open, setOpen] = useState(false);
+  const added = new Set(cart.map(c => c.id));
+  const onAdd = (p) => { setCart([...cart, p]); };
+  const onRemove = (i) => setCart(cart.filter((_, idx) => idx !== i));
+  return (
+    <div>
+      <NavBar cartCount={cart.length} onCart={() => setOpen(true)} />
+      <Hero />
+      <Marquee items={["NO PRESTIGE TAX", "BUILT FOR THE GRAFT", "MUD APPROVED", "RIDER-OWNED"]} />
+      <ShopCollection added={added} onAdd={onAdd} />
+      <AboutUs />
+      <WhyRiders />
+      <Journal />
+      <Reviews />
+      <Ambassadors />
+      <NewsletterCTA />
+      <Footer />
+      <CartDrawer open={open} items={cart} onClose={() => setOpen(false)} onRemove={onRemove} />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

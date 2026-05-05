@@ -1,0 +1,161 @@
+/* ==========================================================================
+   LOAM CO. — Colors & Type
+   Brand: Gritty, authentic, community-focused, anti-prestige MTB streetwear.
+   Palette: pure black, white, electric neon yellow-green (#DAEE01).
+   ========================================================================== */
+
+/* ---------- Fonts ---------- */
+/* Primary display: Bebas Neue — tall, raw, editorial.
+   Body: Inter / Geist — utilitarian sans for long-form copy.
+   Mono: JetBrains Mono — for spec callouts, sizes, prices on tags. */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+:root {
+  /* ---------- Core palette ---------- */
+  --loam-black:        #0A0A0A;   /* True near-black — backgrounds, type */
+  --loam-off-black:    #1A1A1A;   /* Cards, sections on black */
+  --loam-charcoal:     #2E2E2E;   /* Borders, dividers on black */
+  --loam-graphite:     #5A5A5A;   /* Muted text on black */
+  --loam-ash:          #9A9A9A;   /* Secondary text */
+  --loam-bone:         #E8E6E1;   /* Off-white, paper */
+  --loam-white:        #FFFFFF;   /* Pure white */
+  --loam-neon:         #DAEE01;   /* THE accent — neon yellow-green */
+  --loam-neon-dim:     #B8C800;   /* Pressed / hover state for neon */
+
+  /* ---------- Semantic foreground / background ---------- */
+  --bg:                var(--loam-black);
+  --bg-elev:           var(--loam-off-black);
+  --bg-paper:          var(--loam-white);
+  --fg:                var(--loam-white);
+  --fg-muted:          var(--loam-ash);
+  --fg-subtle:         var(--loam-graphite);
+  --fg-on-neon:        var(--loam-black);
+  --fg-on-paper:       var(--loam-black);
+  --accent:            var(--loam-neon);
+  --accent-fg:         var(--loam-black);
+  --border:            var(--loam-charcoal);
+  --border-strong:     var(--loam-white);
+  --border-on-paper:   var(--loam-black);
+
+  /* ---------- Type families ---------- */
+  --font-display:      "Bebas Neue", "Archivo Narrow", "Impact", sans-serif;
+  --font-body:         "Archivo", "Inter", system-ui, -apple-system, sans-serif;
+  --font-narrow:       "Archivo Narrow", "Archivo", sans-serif;
+  --font-mono:         "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---------- Type scale (clamped, viewport-aware) ---------- */
+  --fs-mega:           clamp(72px, 14vw, 220px);   /* Hero killer */
+  --fs-display:        clamp(56px, 9vw, 144px);    /* Section openers */
+  --fs-h1:             clamp(40px, 6vw, 88px);
+  --fs-h2:             clamp(32px, 4vw, 56px);
+  --fs-h3:             clamp(22px, 2.4vw, 32px);
+  --fs-h4:             18px;
+  --fs-body:           16px;
+  --fs-small:          13px;
+  --fs-tiny:           11px;
+
+  --lh-tight:          0.92;
+  --lh-snug:           1.05;
+  --lh-normal:         1.45;
+  --lh-loose:          1.65;
+
+  --tracking-display:  0.01em;
+  --tracking-eyebrow:  0.18em;     /* All-caps labels */
+  --tracking-body:     0;
+  --tracking-tight:    -0.01em;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+
+  /* ---------- Radii (mostly sharp; brand is hard edges) ---------- */
+  --r-0:   0px;       /* Default — brand prefers hard edges */
+  --r-1:   2px;       /* Tags, micro-pills */
+  --r-2:   4px;
+  --r-pill: 999px;    /* For round badges/buttons (use sparingly) */
+
+  /* ---------- Borders ---------- */
+  --bw-hair:   1px;
+  --bw:        2px;   /* Standard brand border */
+  --bw-bold:   3px;
+  --bw-slab:   6px;   /* Hero slab borders */
+
+  /* ---------- Shadows (very few — brand is flat) ---------- */
+  --shadow-sm:   0 1px 0 0 rgba(0,0,0,0.4);
+  --shadow-md:   0 8px 24px rgba(0,0,0,0.35);
+  --shadow-neon: 0 0 0 2px var(--loam-neon), 0 0 24px rgba(218,238,1,0.35);
+
+  /* ---------- Motion ---------- */
+  --ease-out:   cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-snap:  cubic-bezier(0.85, 0, 0.15, 1);
+  --dur-fast:   120ms;
+  --dur:        220ms;
+  --dur-slow:   420ms;
+}
+
+/* ---------- Base resets / element styles ---------- */
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--loam-neon); color: var(--loam-black); }
+
+h1, h2, h3, h4, h5, h6, .h-display {
+  font-family: var(--font-display);
+  font-weight: 400; /* Bebas only has one weight */
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--lh-tight);
+  margin: 0;
+}
+
+h1, .h1 { font-size: var(--fs-h1); }
+h2, .h2 { font-size: var(--fs-h2); }
+h3, .h3 { font-size: var(--fs-h3); }
+h4, .h4 { font-size: var(--fs-h4); font-family: var(--font-body); font-weight: 800; letter-spacing: 0.02em; }
+
+.h-mega    { font-family: var(--font-display); text-transform: uppercase; font-size: var(--fs-mega);    line-height: var(--lh-tight); letter-spacing: var(--tracking-display); }
+.h-display { font-family: var(--font-display); text-transform: uppercase; font-size: var(--fs-display); line-height: var(--lh-tight); letter-spacing: var(--tracking-display); }
+
+p { margin: 0; line-height: var(--lh-normal); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--fs-small);
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--loam-neon);
+}
+
+.mono, code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  letter-spacing: 0;
+}
+
+a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--loam-neon); }
+
+hr { border: 0; border-top: var(--bw) solid var(--border); margin: var(--sp-6) 0; }
+
+/* Utility: neon highlight block (text on neon block) */
+.neon-block {
+  background: var(--loam-neon);
+  color: var(--loam-black);
+  padding: 0.05em 0.18em 0.02em;
+  display: inline-block;
+}

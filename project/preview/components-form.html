@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;padding:24px;background:var(--loam-black);color:#fff;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.field{display:flex;flex-direction:column;gap:8px;}
+.label{font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.18em;color:var(--loam-ash);}
+.input{background:transparent;border:0;border-bottom:2px solid #fff;padding:10px 0;font-family:var(--font-body);font-size:16px;color:#fff;}
+.input:focus{outline:none;border-bottom-color:#DAEE01;}
+.input::placeholder{color:var(--loam-graphite);}
+.signup{display:flex;gap:0;border:2px solid #fff;}
+.signup input{flex:1;background:transparent;border:0;padding:14px 16px;color:#fff;font-family:var(--font-body);font-size:14px;}
+.signup input:focus{outline:none;}
+.signup button{background:#DAEE01;color:#0A0A0A;border:0;font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:12px;padding:0 22px;cursor:pointer;}
+</style></head><body>
+<div class="field">
+  <div class="label">EMAIL</div>
+  <input class="input" placeholder="rider@trails.uk" />
+</div>
+<div class="field">
+  <div class="label">JOIN THE DIRT CULT</div>
+  <div class="signup"><input placeholder="Your email" /><button>JOIN</button></div>
+</div>
+</body></html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;padding:0;background:var(--loam-black);color:#fff;font-family:var(--font-mono);font-size:11px;}
+.row{display:flex;border-bottom:1px solid var(--loam-charcoal);align-items:center;padding:18px 24px;gap:24px;}
+.row:last-child{border:0;}
+.lbl{color:var(--loam-ash);min-width:120px;text-transform:uppercase;letter-spacing:.14em;}
+.dot{width:14px;height:14px;border-radius:999px;background:#DAEE01;display:inline-block;}
+.dur{font-family:var(--font-mono);font-size:13px;color:#fff;}
+.bezier{font-family:var(--font-mono);font-size:11px;color:var(--loam-ash);}
+.swatch-h{padding:10px 16px;background:#0A0A0A;border:2px solid #fff;color:#fff;font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:11px;cursor:pointer;transition:all 120ms cubic-bezier(.85,0,.15,1);}
+.swatch-h:hover{background:#DAEE01;color:#0A0A0A;border-color:#DAEE01;}
+</style></head><body>
+<div class="row"><div class="lbl">FAST</div><div class="dur">120ms</div><div class="bezier">cubic-bezier(.85, 0, .15, 1)</div></div>
+<div class="row"><div class="lbl">DEFAULT</div><div class="dur">220ms</div><div class="bezier">cubic-bezier(.2, .8, .2, 1)</div></div>
+<div class="row"><div class="lbl">SLOW</div><div class="dur">420ms</div><div class="bezier">linear (marquees only)</div></div>
+<div class="row" style="gap:14px;"><div class="lbl">HOVER</div><button class="swatch-h">HOVER ME</button><span class="bezier">→ inverts black↔neon, no scale, no lift</span></div>
+</body></html>

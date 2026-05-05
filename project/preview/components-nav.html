@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+body{margin:0;padding:0;background:var(--loam-black);color:#fff;}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:2px solid var(--loam-charcoal);background:#0A0A0A;}
+.brand{font-family:var(--font-display);font-size:30px;letter-spacing:.04em;line-height:1;}
+.brand .co{font-size:13px;display:inline-block;transform:translateY(-8px);margin-left:4px;}
+.nav{display:flex;gap:30px;}
+.nav a{font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.18em;text-decoration:none;color:#fff;}
+.nav a:hover{color:#DAEE01;}
+.right{display:flex;align-items:center;gap:18px;}
+.icon{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;}
+.cart{position:relative;}
+.cart .badge{position:absolute;top:-6px;right:-8px;background:#DAEE01;color:#0A0A0A;font-family:var(--font-mono);font-weight:700;font-size:10px;border-radius:999px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;}
+.cta{font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:12px;padding:10px 16px;background:#DAEE01;color:#0A0A0A;}
+</style></head><body>
+<div class="bar">
+  <div class="brand">LOAM <span class="co">CO.</span></div>
+  <div class="nav">
+    <a href="#">Shop</a><a href="#">Jerseys</a><a href="#">Trousers</a><a href="#">Journal</a><a href="#">About</a>
+  </div>
+  <div class="right">
+    <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <svg class="icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div class="cart"><svg class="icon" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><div class="badge">2</div></div>
+    <a href="#" class="cta" style="text-decoration:none;">SHOP</a>
+  </div>
+</div>
+</body></html>
