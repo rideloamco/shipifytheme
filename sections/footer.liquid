@@ -1,0 +1,54 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <div>
+      <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name }}">
+        LOAM<span style="font-size:16px;letter-spacing:.04em">CO.</span>
+      </a>
+      <p class="site-footer__tagline">
+        {{ section.settings.tagline | default: 'UK-built mountain bike kit. No prestige tax.' }}
+      </p>
+    </div>
+    <div>
+      <div class="site-footer__col-heading">SHOP</div>
+      <ul class="site-footer__links">
+        <li><a href="{{ routes.root_url }}collections/jerseys">Jerseys</a></li>
+        <li><a href="{{ routes.root_url }}collections/trousers">Trousers</a></li>
+        <li><a href="{{ routes.root_url }}collections/tees">Tees</a></li>
+        <li><a href="{{ routes.root_url }}collections/socks">Socks</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="site-footer__col-heading">COMPANY</div>
+      <ul class="site-footer__links">
+        <li><a href="{{ routes.root_url }}pages/about">Our Story</a></li>
+        <li><a href="{{ routes.root_url }}blogs/journal">Journal</a></li>
+        <li><a href="{{ routes.root_url }}pages/ambassadors">Ambassadors</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="site-footer__col-heading">HELP</div>
+      <ul class="site-footer__links">
+        <li><a href="{{ routes.root_url }}pages/shipping">Shipping</a></li>
+        <li><a href="{{ routes.root_url }}policies/refund-policy">Returns</a></li>
+        <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <div>© {{ 'now' | date: '%Y' }} {{ shop.name | upcase }} · {{ section.settings.company_number | default: 'COMPANY NO. 12345678' }}</div>
+    <div class="site-footer__legal">
+      <a href="{{ routes.root_url }}policies/privacy-policy">Privacy</a>
+      <a href="{{ routes.root_url }}policies/terms-of-service">Terms</a>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "UK-built mountain bike kit. No prestige tax." },
+    { "type": "text", "id": "company_number", "label": "Company number", "default": "COMPANY NO. 12345678" }
+  ]
+}
+{% endschema %}
