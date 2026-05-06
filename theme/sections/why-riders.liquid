@@ -5,23 +5,36 @@
   </div>
 
   <div class="section-why__grid">
-    {%- for block in section.blocks -%}
-      <div class="section-why__item" {{ block.shopify_attributes }}>
-        <div class="section-why__num">{{ block.settings.number }}</div>
-        <div class="section-why__title">{{ block.settings.title }}</div>
-        <div class="section-why__desc">{{ block.settings.description }}</div>
-      </div>
-    {%- else -%}
-      {%- assign defaults = '01,TRAIL-TESTED DURABILITY,Built to last in mud, rain, and dust. Tested in the Tweed Valley before it ever ships.|02,BREATHABLE COMFORT,Engineered fabrics designed for long climbs and longer descents.|03,MODERN STYLE,Ride gear that looks the part on the bike — and at the pub afterwards.|04,SUSTAINABLE CHOICE,Recycled fabrics. Plastic-free packaging. No bullshit greenwashing.' | split: '|' -%}
-      {%- for item in defaults -%}
-        {%- assign parts = item | split: ',' -%}
-        <div class="section-why__item">
-          <div class="section-why__num">{{ parts[0] }}</div>
-          <div class="section-why__title">{{ parts[1] }}</div>
-          <div class="section-why__desc">{{ parts[2] }}</div>
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        <div class="section-why__item" {{ block.shopify_attributes }}>
+          <div class="section-why__num">{{ block.settings.number }}</div>
+          <div class="section-why__title">{{ block.settings.title }}</div>
+          <div class="section-why__desc">{{ block.settings.description }}</div>
         </div>
-      {%- endfor -%}
-    {%- endfor -%}
+      {% endfor %}
+    {% else %}
+      <div class="section-why__item">
+        <div class="section-why__num">01</div>
+        <div class="section-why__title">TRAIL-TESTED DURABILITY</div>
+        <div class="section-why__desc">Built to last in mud, rain, and dust. Tested in the Tweed Valley before it ever ships.</div>
+      </div>
+      <div class="section-why__item">
+        <div class="section-why__num">02</div>
+        <div class="section-why__title">BREATHABLE COMFORT</div>
+        <div class="section-why__desc">Engineered fabrics designed for long climbs and longer descents.</div>
+      </div>
+      <div class="section-why__item">
+        <div class="section-why__num">03</div>
+        <div class="section-why__title">MODERN STYLE</div>
+        <div class="section-why__desc">Ride gear that looks the part on the bike and at the pub afterwards.</div>
+      </div>
+      <div class="section-why__item">
+        <div class="section-why__num">04</div>
+        <div class="section-why__title">SUSTAINABLE CHOICE</div>
+        <div class="section-why__desc">Recycled fabrics. Plastic-free packaging. No bullshit greenwashing.</div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -43,16 +56,6 @@
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Why Riders",
-      "blocks": [
-        { "type": "feature", "settings": { "number": "01", "title": "TRAIL-TESTED DURABILITY", "description": "Built to last in mud, rain, and dust. Tested in the Tweed Valley before it ever ships." } },
-        { "type": "feature", "settings": { "number": "02", "title": "BREATHABLE COMFORT", "description": "Engineered fabrics designed for long climbs and longer descents." } },
-        { "type": "feature", "settings": { "number": "03", "title": "MODERN STYLE", "description": "Ride gear that looks the part on the bike — and at the pub afterwards." } },
-        { "type": "feature", "settings": { "number": "04", "title": "SUSTAINABLE CHOICE", "description": "Recycled fabrics. Plastic-free packaging. No bullshit greenwashing." } }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Why Riders" }]
 }
 {% endschema %}

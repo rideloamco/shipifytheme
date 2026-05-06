@@ -2,64 +2,43 @@
   <div class="site-footer__inner">
     <div>
       <a href="{{ routes.root_url }}" class="site-footer__logo" aria-label="{{ shop.name }}">
-        LOAM<span style="font-size:16px;letter-spacing:.04em;">CO.</span>
+        LOAM<span style="font-size:16px;letter-spacing:.04em">CO.</span>
       </a>
       <p class="site-footer__tagline">
-        {{ section.settings.tagline | default: 'UK-built mountain bike kit. No prestige tax. Designed and tested in the Tweed Valley.' }}
+        {{ section.settings.tagline | default: 'UK-built mountain bike kit. No prestige tax.' }}
       </p>
     </div>
-
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'link_list' -%}
-        <div {{ block.shopify_attributes }}>
-          <div class="site-footer__col-heading">{{ block.settings.heading }}</div>
-          {%- if block.settings.menu != blank -%}
-            <ul class="site-footer__links">
-              {%- for link in linklists[block.settings.menu].links -%}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-              {%- endfor -%}
-            </ul>
-          {%- endif -%}
-        </div>
-      {%- endif -%}
-    {%- else -%}
-      <div>
-        <div class="site-footer__col-heading">SHOP</div>
-        <ul class="site-footer__links">
-          <li><a href="{{ routes.root_url }}collections/jerseys">Jerseys</a></li>
-          <li><a href="{{ routes.root_url }}collections/trousers">Trousers</a></li>
-          <li><a href="{{ routes.root_url }}collections/tees">Tees</a></li>
-          <li><a href="{{ routes.root_url }}collections/socks">Socks</a></li>
-          <li><a href="{{ routes.root_url }}collections/hats">Hats</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="site-footer__col-heading">COMPANY</div>
-        <ul class="site-footer__links">
-          <li><a href="{{ routes.root_url }}pages/about">Our Story</a></li>
-          <li><a href="{{ routes.root_url }}blogs/journal">Journal</a></li>
-          <li><a href="{{ routes.root_url }}pages/sustainability">Sustainability</a></li>
-          <li><a href="{{ routes.root_url }}pages/stockists">Stockists</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="site-footer__col-heading">HELP</div>
-        <ul class="site-footer__links">
-          <li><a href="{{ routes.root_url }}pages/shipping">Shipping</a></li>
-          <li><a href="{{ routes.root_url }}policies/refund-policy">Returns</a></li>
-          <li><a href="{{ routes.root_url }}pages/size-guide">Size Guide</a></li>
-          <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
-        </ul>
-      </div>
-    {%- endfor -%}
+    <div>
+      <div class="site-footer__col-heading">SHOP</div>
+      <ul class="site-footer__links">
+        <li><a href="{{ routes.root_url }}collections/jerseys">Jerseys</a></li>
+        <li><a href="{{ routes.root_url }}collections/trousers">Trousers</a></li>
+        <li><a href="{{ routes.root_url }}collections/tees">Tees</a></li>
+        <li><a href="{{ routes.root_url }}collections/socks">Socks</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="site-footer__col-heading">COMPANY</div>
+      <ul class="site-footer__links">
+        <li><a href="{{ routes.root_url }}pages/about">Our Story</a></li>
+        <li><a href="{{ routes.root_url }}blogs/journal">Journal</a></li>
+        <li><a href="{{ routes.root_url }}pages/ambassadors">Ambassadors</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="site-footer__col-heading">HELP</div>
+      <ul class="site-footer__links">
+        <li><a href="{{ routes.root_url }}pages/shipping">Shipping</a></li>
+        <li><a href="{{ routes.root_url }}policies/refund-policy">Returns</a></li>
+        <li><a href="{{ routes.root_url }}pages/contact">Contact</a></li>
+      </ul>
+    </div>
   </div>
-
   <div class="site-footer__bottom">
     <div>© {{ 'now' | date: '%Y' }} {{ shop.name | upcase }} · {{ section.settings.company_number | default: 'COMPANY NO. 12345678' }}</div>
     <div class="site-footer__legal">
       <a href="{{ routes.root_url }}policies/privacy-policy">Privacy</a>
       <a href="{{ routes.root_url }}policies/terms-of-service">Terms</a>
-      <a href="{{ routes.root_url }}policies/privacy-policy#cookies">Cookies</a>
     </div>
   </div>
 </footer>
@@ -68,28 +47,8 @@
 {
   "name": "Footer",
   "settings": [
-    {
-      "type": "text",
-      "id": "tagline",
-      "label": "Tagline",
-      "default": "UK-built mountain bike kit. No prestige tax. Designed and tested in the Tweed Valley."
-    },
-    {
-      "type": "text",
-      "id": "company_number",
-      "label": "Company number",
-      "default": "COMPANY NO. 12345678"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "link_list",
-      "name": "Menu column",
-      "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Links" },
-        { "type": "link_list", "id": "menu", "label": "Menu" }
-      ]
-    }
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "UK-built mountain bike kit. No prestige tax." },
+    { "type": "text", "id": "company_number", "label": "Company number", "default": "COMPANY NO. 12345678" }
   ]
 }
 {% endschema %}

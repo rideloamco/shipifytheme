@@ -1,30 +1,19 @@
 <section class="hero-video" aria-label="Hero banner">
-  {%- if section.settings.video_url != blank -%}
-    <video
-      class="hero-video__bg-img"
-      src="{{ section.settings.video_url }}"
-      autoplay muted loop playsinline
-      aria-hidden="true"
-    ></video>
-  {%- elsif section.settings.background_image != blank -%}
-    <img
-      class="hero-video__bg-img"
-      src="{{ section.settings.background_image | image_url: width: 1920 }}"
-      alt=""
-      aria-hidden="true"
-      loading="eager"
-    >
-  {%- else -%}
+  {% if section.settings.video_url != blank %}
+    <video class="hero-video__bg-img" src="{{ section.settings.video_url }}" autoplay muted loop playsinline aria-hidden="true"></video>
+  {% elsif section.settings.background_image != blank %}
+    <img class="hero-video__bg-img" src="{{ section.settings.background_image | image_url: width: 1920 }}" alt="" loading="eager">
+  {% else %}
     <div class="hero-video__placeholder" aria-hidden="true">
       <div class="hero-video__play-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="#DAEE01" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#DAEE01"><path d="M8 5v14l11-7z"/></svg>
       </div>
       <div class="hero-video__placeholder-text">
         BANNER VIDEO<br>
-        <span style="color:var(--loam-graphite)">[ ATTACH .MP4 — FULL-BLEED, AUTOPLAY MUTED LOOP ]</span>
+        <span style="color:var(--loam-graphite)">[ ATTACH .MP4 IN THEME EDITOR ]</span>
       </div>
     </div>
-  {%- endif -%}
+  {% endif %}
 
   <div class="hero-video__stamp">
     <span class="eyebrow">{{ section.settings.stamp | default: 'UK-OWNED · RIDER-RUN' }}</span>
@@ -40,29 +29,26 @@
 
 {% schema %}
 {
-  "name": "Hero — Video Banner",
+  "name": "Hero Banner",
   "settings": [
     {
       "type": "text",
       "id": "video_url",
       "label": "Video URL (.mp4)",
-      "info": "Upload your video to Files and paste the URL here, or use a CDN link."
+      "info": "Upload your video to Files and paste the URL here."
     },
     {
       "type": "image_picker",
       "id": "background_image",
-      "label": "Fallback image",
-      "info": "Shown if no video is set, or while the video loads."
+      "label": "Fallback image"
     },
     {
       "type": "text",
       "id": "stamp",
-      "label": "Bottom-left stamp",
+      "label": "Stamp text",
       "default": "UK-OWNED · RIDER-RUN"
     }
   ],
-  "presets": [
-    { "name": "Hero — Video Banner" }
-  ]
+  "presets": [{ "name": "Hero Banner" }]
 }
 {% endschema %}
