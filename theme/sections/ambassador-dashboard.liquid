@@ -1,0 +1,314 @@
+<style>
+  .dash-layout { display: flex; min-height: 100vh; background: var(--loam-black); }
+  .dash-sidebar { width: 240px; background: var(--loam-black); border-right: 2px solid var(--loam-charcoal); padding: 28px 0; display: flex; flex-direction: column; min-height: 100vh; flex-shrink: 0; }
+  .dash-sidebar__logo { padding: 0 24px 24px; border-bottom: 1px solid var(--loam-charcoal); margin-bottom: 18px; }
+  .dash-sidebar__logo-text { font-family: var(--font-display); font-size: 28px; color: var(--loam-white); line-height: 1; letter-spacing: .04em; }
+  .dash-sidebar__logo-sub { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .2em; color: var(--loam-neon); margin-top: 6px; }
+  .dash-nav-btn { background: transparent; border: 0; border-left: 3px solid transparent; color: var(--loam-white); text-align: left; padding: 14px 24px; font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: .16em; cursor: pointer; width: 100%; }
+  .dash-nav-btn.is-active { background: var(--loam-off-black); border-left-color: var(--loam-neon); color: var(--loam-neon); }
+  .dash-sidebar__user { margin-top: auto; padding: 20px 24px; border-top: 1px solid var(--loam-charcoal); display: flex; align-items: center; gap: 12px; }
+  .dash-sidebar__avatar { width: 36px; height: 36px; background: var(--loam-neon); color: var(--loam-black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; flex-shrink: 0; }
+  .dash-sidebar__name { color: var(--loam-white); font-size: 13px; font-weight: 600; }
+  .dash-sidebar__tier { font-family: var(--font-mono); font-size: 10px; color: var(--loam-ash); text-transform: uppercase; letter-spacing: .12em; }
+  .dash-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .dash-topbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--loam-charcoal); background: var(--loam-black); }
+  .dash-topbar__greeting { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: .18em; color: var(--loam-ash); }
+  .dash-topbar__name { font-family: var(--font-display); font-size: 28px; color: var(--loam-white); text-transform: uppercase; line-height: 1; margin-top: 4px; }
+  .dash-badge { background: var(--loam-neon); color: var(--loam-black); padding: 6px 12px; font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: .14em; }
+  .dash-content { flex: 1; padding: 32px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+  .stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .stat-card { background: var(--loam-off-black); border: 2px solid var(--loam-charcoal); padding: 22px; }
+  .stat-card__label { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .2em; color: var(--loam-ash); }
+  .stat-card__value { font-family: var(--font-display); font-size: 56px; color: var(--loam-white); line-height: 1; margin-top: 12px; }
+  .stat-card__delta { display: inline-block; background: var(--loam-neon); color: var(--loam-black); padding: 3px 8px; font-family: var(--font-mono); font-weight: 700; font-size: 11px; }
+  .stat-card__sub { font-family: var(--font-mono); font-size: 11px; color: var(--loam-ash); margin-top: 4px; }
+  .tier-progress { background: var(--loam-off-black); border: 2px solid var(--loam-neon); padding: 24px; }
+  .tier-progress__top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .tier-progress__label { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .2em; color: var(--loam-neon); }
+  .tier-progress__title { font-family: var(--font-display); font-size: 36px; color: var(--loam-white); text-transform: uppercase; line-height: 1; margin-top: 8px; }
+  .tier-progress__togo { font-family: var(--font-mono); font-size: 12px; color: var(--loam-ash); text-transform: uppercase; letter-spacing: .12em; }
+  .tier-progress__bar-wrap { margin-top: 22px; height: 14px; background: var(--loam-black); border: 1px solid var(--loam-charcoal); }
+  .tier-progress__bar { height: 100%; background: var(--loam-neon); }
+  .tier-progress__labels { display: flex; justify-content: space-between; margin-top: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--loam-ash); }
+  .chart-box { background: var(--loam-off-black); border: 2px solid var(--loam-charcoal); padding: 24px; }
+  .chart-box__header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 22px; }
+  .chart-box__label { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .2em; color: var(--loam-ash); }
+  .chart-box__total { font-family: var(--font-display); font-size: 32px; color: var(--loam-white); margin-top: 8px; }
+  .chart-bars { display: flex; align-items: flex-end; gap: 8px; height: 180px; padding-bottom: 22px; border-bottom: 1px solid var(--loam-charcoal); }
+  .chart-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+  .chart-bar { width: 100%; background: var(--loam-white); }
+  .chart-bar--current { background: var(--loam-neon); }
+  .chart-labels { display: flex; gap: 8px; margin-top: 8px; }
+  .chart-label { flex: 1; text-align: center; font-family: var(--font-mono); font-size: 9px; color: var(--loam-ash); letter-spacing: .1em; }
+  .link-box { background: var(--loam-off-black); border: 2px solid var(--loam-charcoal); padding: 24px; }
+  .link-box__label { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .2em; color: var(--loam-ash); }
+  .link-box__sublabel { font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .18em; color: var(--loam-neon); margin-bottom: 6px; margin-top: 16px; }
+  .copyable { display: flex; border: 2px solid var(--loam-white); }
+  .copyable__value { flex: 1; padding: 12px 14px; font-family: var(--font-mono); font-size: 14px; color: var(--loam-white); }
+  .copyable__value--code { color: var(--loam-neon); font-size: 18px; font-weight: 700; letter-spacing: .08em; }
+  .copyable__btn { padding: 0 18px; background: transparent; color: var(--loam-white); border: 0; border-left: 2px solid var(--loam-white); font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: .16em; cursor: pointer; transition: all var(--dur-fast); white-space: nowrap; }
+  .copyable__btn.is-copied, .copyable__btn:hover { background: var(--loam-neon); color: var(--loam-black); }
+  .data-table { background: var(--loam-off-black); border: 2px solid var(--loam-charcoal); }
+  .data-table__header { padding: 20px 24px; border-bottom: 1px solid var(--loam-charcoal); display: flex; justify-content: space-between; align-items: center; }
+  .data-table__title { font-family: var(--font-display); font-size: 28px; color: var(--loam-white); margin-top: 4px; }
+  .data-table__col-head { display: grid; padding: 12px 24px; border-bottom: 1px solid var(--loam-charcoal); font-family: var(--font-narrow); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .18em; color: var(--loam-ash); }
+  .data-table__row { display: grid; padding: 14px 24px; border-bottom: 1px solid var(--loam-charcoal); font-family: var(--font-mono); font-size: 13px; color: var(--loam-white); align-items: center; }
+  .data-table__row:last-child { border-bottom: 0; }
+  .payout-badge { padding: 4px 10px; font-family: var(--font-mono); font-weight: 700; font-size: 10px; letter-spacing: .14em; }
+  .payout-badge--paid { background: var(--loam-neon); color: var(--loam-black); }
+  .payout-badge--pending { background: transparent; color: var(--loam-neon); border: 1px solid var(--loam-neon); }
+  .top-products { background: var(--loam-off-black); border: 2px solid var(--loam-charcoal); padding: 24px; }
+  .product-bar { margin-bottom: 14px; }
+  .product-bar:last-child { margin-bottom: 0; }
+  .product-bar__info { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .product-bar__name { font-family: var(--font-narrow); font-weight: 700; font-size: 14px; color: var(--loam-white); }
+  .product-bar__meta { font-family: var(--font-mono); font-size: 12px; color: var(--loam-ash); }
+  .product-bar__track { height: 8px; background: var(--loam-black); }
+  .product-bar__fill { height: 100%; background: var(--loam-neon); }
+  @media (max-width: 1024px) {
+    .dash-layout { flex-direction: column; }
+    .dash-sidebar { width: 100%; min-height: auto; flex-direction: row; flex-wrap: wrap; }
+    .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<div class="dash-layout">
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar__logo">
+      <div class="dash-sidebar__logo-text">LOAM <span style="font-size:12px;color:var(--loam-neon)">CO.</span></div>
+      <div class="dash-sidebar__logo-sub">AMBASSADOR PORTAL</div>
+    </div>
+
+    {%- assign nav_items = 'overview,Overview|sales,Sales|payouts,Payouts|links,Links & Codes|kit,Kit Drops|profile,Profile' | split: '|' -%}
+    {%- for item in nav_items -%}
+      {%- assign parts = item | split: ',' -%}
+      <button
+        class="dash-nav-btn{% if forloop.first %} is-active{% endif %}"
+        data-dash-nav="{{ parts[0] }}"
+      >{{ parts[1] }}</button>
+    {%- endfor -%}
+
+    <div class="dash-sidebar__user">
+      <div class="dash-sidebar__avatar">SR</div>
+      <div>
+        <div class="dash-sidebar__name">Sam Rider</div>
+        <div class="dash-sidebar__tier">BERMS · 18%</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div>
+        <div class="dash-topbar__greeting">WELCOME BACK</div>
+        <div class="dash-topbar__name">Sam Rider</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <span class="dash-badge">BERMS TIER</span>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--loam-ash);letter-spacing:.12em">NEXT REVIEW · 01 JUL 2026</span>
+      </div>
+    </div>
+
+    <div class="dash-content" data-dash-panel="overview">
+      <!-- Stat cards -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card__label">THIS MONTH'S COMMISSION</div>
+          <div class="stat-card__value">£583</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+            <span class="stat-card__delta">+24%</span>
+            <span class="stat-card__sub">vs last month</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">SALES THIS MONTH</div>
+          <div class="stat-card__value">47</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+            <span class="stat-card__delta">+12</span>
+            <span class="stat-card__sub">vs last month</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">LIFETIME EARNINGS</div>
+          <div class="stat-card__value">£3,892</div>
+          <div style="margin-top:12px"><span class="stat-card__sub">since Sep 2024</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">LINK CLICKS · 30D</div>
+          <div class="stat-card__value">1,284</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+            <span class="stat-card__delta">3.7% CR</span>
+            <span class="stat-card__sub">conversion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier progress -->
+      <div class="tier-progress">
+        <div class="tier-progress__top">
+          <div>
+            <div class="tier-progress__label">QUARTERLY PROGRESS</div>
+            <div class="tier-progress__title">Berms → Descent</div>
+          </div>
+          <div class="tier-progress__togo">£1,760 TO GO</div>
+        </div>
+        <div class="tier-progress__bar-wrap">
+          <div class="tier-progress__bar" style="width:64.8%"></div>
+        </div>
+        <div class="tier-progress__labels">
+          <span>£0</span>
+          <span style="color:var(--loam-white)">£3,240 / £5,000</span>
+          <span>£5,000</span>
+        </div>
+      </div>
+
+      <!-- Chart + Link box -->
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px">
+        <div class="chart-box">
+          <div class="chart-box__header">
+            <div>
+              <div class="chart-box__label">SALES · LAST 12 MONTHS</div>
+              <div class="chart-box__total">£10,840</div>
+            </div>
+            <div style="display:flex;gap:6px">
+              {%- for period in 'MONTH,QUARTER,YEAR' | split: ',' -%}
+                <button style="font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;font-size:10px;letter-spacing:.16em;padding:8px 12px;background:{% if period == 'YEAR' %}var(--loam-neon){% else %}transparent{% endif %};color:{% if period == 'YEAR' %}var(--loam-black){% else %}var(--loam-white){% endif %};border:1px solid {% if period == 'YEAR' %}var(--loam-neon){% else %}var(--loam-charcoal){% endif %};cursor:pointer">{{ period }}</button>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- assign bar_heights = '26,38,19,47,60,40,66,55,74,89,81,100' | split: ',' -%}
+          {%- assign bar_labels = 'JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC' | split: ',' -%}
+          <div class="chart-bars">
+            {%- for h in bar_heights -%}
+              <div class="chart-bar-col">
+                <div class="chart-bar{% if forloop.last %} chart-bar--current{% endif %}" style="height:{{ h }}%"></div>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="chart-labels">
+            {%- for label in bar_labels -%}
+              <div class="chart-label">{{ label }}</div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <div class="link-box">
+          <div class="link-box__label">YOUR LINK & CODE</div>
+          <div class="link-box__sublabel">REFERRAL LINK</div>
+          <div class="copyable">
+            <div class="copyable__value">loam.co/?ref=samrider</div>
+            <button class="copyable__btn" data-copy="https://loam.co/?ref=samrider">COPY</button>
+          </div>
+          <div class="link-box__sublabel">DISCOUNT CODE · 12% OFF FOR YOUR AUDIENCE</div>
+          <div class="copyable">
+            <div class="copyable__value copyable__value--code">SAMR10</div>
+            <button class="copyable__btn" data-copy="SAMR10">COPY</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent sales + Top products -->
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px">
+        <div class="data-table">
+          <div class="data-table__header">
+            <div>
+              <div class="stat-card__label">RECENT SALES</div>
+              <div class="data-table__title">This week</div>
+            </div>
+            <a href="#" style="font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:.16em;color:var(--loam-neon);text-decoration:none">VIEW ALL →</a>
+          </div>
+          <div class="data-table__col-head" style="grid-template-columns:90px 110px 1.6fr 1fr 90px 100px">
+            <div>DATE</div><div>ORDER</div><div>PRODUCT</div><div>CUSTOMER</div>
+            <div style="text-align:right">TOTAL</div><div style="text-align:right">YOUR CUT</div>
+          </div>
+          {%- assign sales_data = '04 MAY,#L-8842,Graft Jersey,M. Patel,65.00,11.70|03 MAY,#L-8839,Trail Trouser + Tee,J. O\'Reilly,121.00,21.78|03 MAY,#L-8836,Crew Sock 3-Pack,A. Singh,24.00,4.32|02 MAY,#L-8830,Dirt Cult Tee,L. MacKenzie,32.00,5.76|01 MAY,#L-8824,Graft Jersey,C. Davies,65.00,11.70|30 APR,#L-8819,Trail Trouser,R. Bennett,89.00,16.02' | split: '|' -%}
+          {%- for row in sales_data -%}
+            {%- assign cols = row | split: ',' -%}
+            <div class="data-table__row" style="grid-template-columns:90px 110px 1.6fr 1fr 90px 100px">
+              <div style="color:var(--loam-ash)">{{ cols[0] }}</div>
+              <div>{{ cols[1] }}</div>
+              <div style="font-family:var(--font-body);font-weight:500">{{ cols[2] }}</div>
+              <div style="color:var(--loam-ash)">{{ cols[3] }}</div>
+              <div style="text-align:right">£{{ cols[4] }}</div>
+              <div style="text-align:right;color:var(--loam-neon);font-weight:700">£{{ cols[5] }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="top-products">
+          <div class="stat-card__label">TOP PRODUCTS</div>
+          <div class="data-table__title">Your bestsellers</div>
+          <div style="margin-top:18px">
+            {%- assign top_prods = 'Graft Jersey,18,1170,100|Trail Trouser,12,1068,91|Dirt Cult Tee,24,768,66|Crew Sock 3-Pack,31,744,64' | split: '|' -%}
+            {%- for prod in top_prods -%}
+              {%- assign p = prod | split: ',' -%}
+              <div class="product-bar">
+                <div class="product-bar__info">
+                  <span class="product-bar__name">{{ p[0] }}</span>
+                  <span class="product-bar__meta">{{ p[1] }} sold · £{{ p[2] }}</span>
+                </div>
+                <div class="product-bar__track">
+                  <div class="product-bar__fill" style="width:{{ p[3] }}%"></div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+
+      <!-- Payouts -->
+      <div class="data-table">
+        <div class="data-table__header">
+          <div>
+            <div class="stat-card__label">PAYOUTS</div>
+            <div class="data-table__title">Last four months</div>
+          </div>
+        </div>
+        {%- assign payout_rows = '01 MAY 2026,APR 2026,412.86,PAID|01 APR 2026,MAR 2026,388.20,PAID|01 MAR 2026,FEB 2026,264.55,PAID|01 JUN 2026,MAY 2026,583.30,PENDING' | split: '|' -%}
+        {%- for row in payout_rows -%}
+          {%- assign cols = row | split: ',' -%}
+          <div class="data-table__row" style="grid-template-columns:1fr 1fr 1fr 100px">
+            <div style="color:var(--loam-white)">{{ cols[0] }}</div>
+            <div style="color:var(--loam-ash)">FOR {{ cols[1] }}</div>
+            <div style="font-weight:700;font-size:16px">£{{ cols[2] }}</div>
+            <div style="text-align:right">
+              <span class="payout-badge payout-badge--{{ cols[3] | downcase }}">{{ cols[3] }}</span>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <!-- Other panels (hidden by default, shown via JS) -->
+    <div data-dash-panel="sales" style="display:none;padding:32px">
+      <h2 style="font-family:var(--font-display);font-size:56px;text-transform:uppercase;color:var(--loam-white)">Sales</h2>
+      <p style="color:var(--loam-ash);margin-top:16px">Full sales history and analytics — coming soon.</p>
+    </div>
+    <div data-dash-panel="payouts" style="display:none;padding:32px">
+      <h2 style="font-family:var(--font-display);font-size:56px;text-transform:uppercase;color:var(--loam-white)">Payouts</h2>
+      <p style="color:var(--loam-ash);margin-top:16px">Payout history and bank details — coming soon.</p>
+    </div>
+    <div data-dash-panel="links" style="display:none;padding:32px">
+      <h2 style="font-family:var(--font-display);font-size:56px;text-transform:uppercase;color:var(--loam-white)">Links & Codes</h2>
+      <p style="color:var(--loam-ash);margin-top:16px">Your referral links and discount codes — coming soon.</p>
+    </div>
+    <div data-dash-panel="kit" style="display:none;padding:32px">
+      <h2 style="font-family:var(--font-display);font-size:56px;text-transform:uppercase;color:var(--loam-white)">Kit Drops</h2>
+      <p style="color:var(--loam-ash);margin-top:16px">Your kit allowance and upcoming drops — coming soon.</p>
+    </div>
+    <div data-dash-panel="profile" style="display:none;padding:32px">
+      <h2 style="font-family:var(--font-display);font-size:56px;text-transform:uppercase;color:var(--loam-white)">Profile</h2>
+      <p style="color:var(--loam-ash);margin-top:16px">Your ambassador profile and settings — coming soon.</p>
+    </div>
+  </main>
+</div>
+
+{% schema %}
+{
+  "name": "Ambassador Dashboard",
+  "settings": [],
+  "presets": [
+    { "name": "Ambassador Dashboard" }
+  ]
+}
+{% endschema %}

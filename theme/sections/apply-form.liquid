@@ -1,0 +1,87 @@
+<section id="apply" class="section-apply">
+  <div class="section-apply__inner">
+    <p class="eyebrow">{{ section.settings.eyebrow | default: 'APPLY' }}</p>
+    <h2 class="section-apply__heading">{{ section.settings.heading | default: 'Apply to ride.' }}</h2>
+    <p style="font-size:15px;color:var(--loam-bone);margin-top:16px;margin-bottom:36px">
+      {{ section.settings.subheading | default: 'Three minutes. Honest answers. We get back inside 7 days.' }}
+    </p>
+
+    <div class="js-apply-wrapper">
+      {%- form 'contact', id: 'ambassador-apply-form', class: 'js-apply-form' -%}
+        <input type="hidden" name="contact[tags]" value="ambassador-application">
+
+        <div class="form-grid-2" style="gap:24px;margin-bottom:24px">
+          <div class="form-group">
+            <label for="apply-name" class="field-label">NAME</label>
+            <input id="apply-name" type="text" name="contact[name]" class="field-input" placeholder="Sam Rider" required>
+          </div>
+          <div class="form-group">
+            <label for="apply-email" class="field-label">EMAIL</label>
+            <input id="apply-email" type="email" name="contact[email]" class="field-input" placeholder="you@trails.uk" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2" style="gap:24px;margin-bottom:24px">
+          <div class="form-group">
+            <label for="apply-handle" class="field-label">PRIMARY SOCIAL HANDLE</label>
+            <input id="apply-handle" type="text" name="contact[social_handle]" class="field-input" placeholder="@yourhandle (IG / TT / YT)" required>
+          </div>
+          <div class="form-group">
+            <label for="apply-region" class="field-label">HOME TRAILS / REGION</label>
+            <input id="apply-region" type="text" name="contact[region]" class="field-input" placeholder="Tweed Valley, Scotland">
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:24px">
+          <label for="apply-followers" class="field-label">AUDIENCE SIZE</label>
+          <select id="apply-followers" name="contact[audience_size]" class="field-input" style="appearance:none;cursor:pointer" required>
+            <option value="" style="background:#0A0A0A">Select range</option>
+            <option style="background:#0A0A0A">Under 1k</option>
+            <option style="background:#0A0A0A">1k – 10k</option>
+            <option style="background:#0A0A0A">10k – 50k</option>
+            <option style="background:#0A0A0A">50k – 250k</option>
+            <option style="background:#0A0A0A">250k+</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom:24px">
+          <label for="apply-why" class="field-label">TELL US ABOUT YOU</label>
+          <textarea
+            id="apply-why"
+            name="contact[body]"
+            class="field-input"
+            rows="4"
+            placeholder="What kind of content do you make? Who's your community? Why Loam Co.?"
+            required
+          ></textarea>
+        </div>
+
+        <label class="form-checkbox" style="margin-bottom:24px">
+          <input type="checkbox" name="contact[terms]" required style="accent-color:var(--loam-neon)">
+          <span>
+            I'm 18+ and agree to the
+            <a href="{{ routes.root_url }}pages/ambassador-terms" style="color:var(--loam-neon)">ambassador terms</a>
+            and
+            <a href="{{ routes.root_url }}policies/privacy-policy" style="color:var(--loam-neon)">privacy policy</a>.
+          </span>
+        </label>
+
+        <button type="submit" class="btn btn--primary">SUBMIT APPLICATION</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Apply Form",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "APPLY" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Apply to ride." },
+    { "type": "text", "id": "subheading", "label": "Sub-heading", "default": "Three minutes. Honest answers. We get back inside 7 days." }
+  ],
+  "presets": [
+    { "name": "Apply Form" }
+  ]
+}
+{% endschema %}

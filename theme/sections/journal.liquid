@@ -1,0 +1,73 @@
+{%- liquid
+  assign blog_handle = section.settings.blog | default: 'journal'
+  assign selected_blog = blogs[blog_handle]
+  assign article_limit = section.settings.posts_to_show | default: 3
+-%}
+
+<section id="journal" class="section-journal">
+  <div class="section-journal__header">
+    <div>
+      <p class="eyebrow">{{ section.settings.eyebrow | default: 'FROM THE LOAM JOURNAL' }}</p>
+      <h2 class="section-journal__heading">{{ section.settings.heading | default: 'Trail notes' }}</h2>
+    </div>
+    <a
+      href="{{ selected_blog.url | default: routes.root_url | append: 'blogs/journal' }}"
+      style="font-family:var(--font-narrow);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.18em;color:var(--loam-neon);text-decoration:none"
+    >
+      ALL ARTICLES →
+    </a>
+  </div>
+
+  <div class="section-journal__grid">
+    {%- if selected_blog != blank and selected_blog.articles.size > 0 -%}
+      {%- for article in selected_blog.articles limit: article_limit -%}
+        <a href="{{ article.url }}" class="article-card">
+          <div class="article-card__image">
+            {%- if article.image -%}
+              <img
+                src="{{ article.image | image_url: width: 800 }}"
+                alt="{{ article.image.alt | default: article.title | escape }}"
+                loading="lazy" width="800" height="600"
+              >
+            {%- else -%}
+              JOURNAL · IMAGE
+            {%- endif -%}
+          </div>
+          {%- if article.tags.size > 0 -%}
+            <div class="article-card__tag">{{ article.tags.first | upcase }}</div>
+          {%- endif -%}
+          <h3 class="article-card__title">{{ article.title }}</h3>
+          <div class="article-card__meta">
+            {{ article.content | strip_html | size | divided_by: 200 | plus: 1 }} min read · {{ article.published_at | date: '%B %Y' }}
+          </div>
+        </a>
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign placeholder_articles = 'How to choose the right MTB socks,GUIDE,4 min read · April 2026|Top 5 must-have pieces for trail riders,KIT LIST,6 min read · March 2026|Why breathable fabrics actually matter,FABRIC,5 min read · March 2026' | split: '|' -%}
+      {%- for item in placeholder_articles -%}
+        {%- assign parts = item | split: ',' -%}
+        <div class="article-card">
+          <div class="article-card__image">JOURNAL · IMAGE</div>
+          <div class="article-card__tag">{{ parts[1] }}</div>
+          <h3 class="article-card__title">{{ parts[0] }}</h3>
+          <div class="article-card__meta">{{ parts[2] }}</div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Journal — Trail Notes",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FROM THE LOAM JOURNAL" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Trail notes" },
+    { "type": "blog", "id": "blog", "label": "Blog" },
+    { "type": "range", "id": "posts_to_show", "label": "Posts to show", "min": 1, "max": 6, "step": 1, "default": 3 }
+  ],
+  "presets": [
+    { "name": "Journal — Trail Notes" }
+  ]
+}
+{% endschema %}

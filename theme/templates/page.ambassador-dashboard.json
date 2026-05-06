@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "ambassador-dashboard": {
+      "type": "ambassador-dashboard",
+      "settings": {}
+    }
+  },
+  "order": ["ambassador-dashboard"]
+}

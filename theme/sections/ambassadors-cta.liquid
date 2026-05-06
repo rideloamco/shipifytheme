@@ -1,0 +1,133 @@
+<section id="ambassadors" class="section-ambassador">
+  <div class="section-ambassador__inner">
+    <div>
+      <p class="eyebrow">{{ section.settings.eyebrow | default: 'AMBASSADORS · AFFILIATES' }}</p>
+      <h2 class="section-ambassador__heading">
+        Ride with us.<br>
+        <span class="neon-block">Get paid.</span>
+      </h2>
+      <p style="font-size:16px;line-height:1.55;color:var(--loam-bone);margin-top:22px;max-width:480px">
+        {{ section.settings.body | default: 'Make content. Push people to the kit. Earn a cut on every sale through your link. No quotas. No exclusivity. Just riders selling kit they actually wear.' }}
+      </p>
+
+      <div class="section-ambassador__stats">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stat' -%}
+            <div class="section-ambassador__stat" {{ block.shopify_attributes }}>
+              <div class="section-ambassador__stat-num">{{ block.settings.number }}</div>
+              <div class="section-ambassador__stat-label">{{ block.settings.label }}</div>
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <div class="section-ambassador__stat">
+            <div class="section-ambassador__stat-num">15%</div>
+            <div class="section-ambassador__stat-label">COMMISSION ON EVERY SALE</div>
+          </div>
+          <div class="section-ambassador__stat">
+            <div class="section-ambassador__stat-num">10%</div>
+            <div class="section-ambassador__stat-label">DISCOUNT FOR YOUR AUDIENCE</div>
+          </div>
+          <div class="section-ambassador__stat">
+            <div class="section-ambassador__stat-num">£0</div>
+            <div class="section-ambassador__stat-label">JOINING FEE · NO QUOTAS</div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <ul class="section-ambassador__benefits">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'benefit' -%}
+            <li class="section-ambassador__benefit" {{ block.shopify_attributes }}>
+              <span class="section-ambassador__benefit-icon">+</span>
+              {{ block.settings.text }}
+            </li>
+          {%- endif -%}
+        {%- else -%}
+          {%- assign benefits = 'Free kit drops for top performers each quarter|Custom discount code + tracking dashboard|Monthly payouts via bank transfer|First look at new product drops' | split: '|' -%}
+          {%- for benefit in benefits -%}
+            <li class="section-ambassador__benefit">
+              <span class="section-ambassador__benefit-icon">+</span>{{ benefit }}
+            </li>
+          {%- endfor -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="ambassador-form-box">
+      <div class="ambassador-form-box__title">Apply to ride</div>
+      <p class="ambassador-form-box__sub">Tell us about you. We get back inside 7 days.</p>
+
+      <div class="js-apply-wrapper">
+        {%- form 'contact', id: 'ambassador-cta-form', class: 'js-apply-form' -%}
+          <input type="hidden" name="contact[tags]" value="ambassador-application">
+          <div class="form-grid-2" style="gap:18px;margin-bottom:18px">
+            <div class="form-group">
+              <label for="amb-name-cta" class="field-label">NAME</label>
+              <input id="amb-name-cta" type="text" name="contact[name]" class="field-input" placeholder="Sam Rider" required>
+            </div>
+            <div class="form-group">
+              <label for="amb-email-cta" class="field-label">EMAIL</label>
+              <input id="amb-email-cta" type="email" name="contact[email]" class="field-input" placeholder="you@trails.uk" required>
+            </div>
+          </div>
+          <div class="form-grid-2" style="gap:18px;margin-bottom:18px">
+            <div class="form-group">
+              <label for="amb-handle-cta" class="field-label">SOCIAL HANDLE</label>
+              <input id="amb-handle-cta" type="text" name="contact[handle]" class="field-input" placeholder="@yourhandle">
+            </div>
+            <div class="form-group">
+              <label for="amb-region-cta" class="field-label">REGION</label>
+              <input id="amb-region-cta" type="text" name="contact[region]" class="field-input" placeholder="Tweed Valley">
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom:18px">
+            <label for="amb-followers-cta" class="field-label">AUDIENCE SIZE</label>
+            <select id="amb-followers-cta" name="contact[audience_size]" class="field-input" style="appearance:none;cursor:pointer">
+              <option value="" style="background:#0A0A0A">Select range</option>
+              <option style="background:#0A0A0A">Under 1k</option>
+              <option style="background:#0A0A0A">1k – 10k</option>
+              <option style="background:#0A0A0A">10k – 50k</option>
+              <option style="background:#0A0A0A">50k – 250k</option>
+              <option style="background:#0A0A0A">250k+</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:18px">
+            <label for="amb-why-cta" class="field-label">WHY YOU?</label>
+            <textarea id="amb-why-cta" name="contact[body]" class="field-input" rows="3" placeholder="What kind of content do you make? Where do you ride?"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;margin-top:8px">SUBMIT APPLICATION</button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ambassadors CTA",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "AMBASSADORS · AFFILIATES" },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Make content. Push people to the kit. Earn a cut on every sale through your link. No quotas. No exclusivity." }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "15%" },
+        { "type": "text", "id": "label", "label": "Label", "default": "COMMISSION ON EVERY SALE" }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Benefit text", "default": "Free kit drops for top performers each quarter" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Ambassadors CTA" }
+  ]
+}
+{% endschema %}
