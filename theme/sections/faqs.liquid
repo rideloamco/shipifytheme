@@ -4,11 +4,11 @@
       <p class="eyebrow">{{ section.settings.eyebrow | default: 'FAQS' }}</p>
       <h2 class="section-faqs__heading">{{ section.settings.heading | default: 'Straight answers.' }}</h2>
       <p style="font-size:14px;color:var(--loam-ash);margin-top:18px;line-height:1.55">
-        {{ section.settings.contact_blurb | default: 'Anything we haven\'t covered? Drop us a line at' }}
+        {{ section.settings.contact_blurb | default: "Anything we haven't covered? Drop us a line at" }}
         <a href="mailto:{{ section.settings.contact_email | default: 'ambassadors@loam.co' }}" style="color:var(--loam-neon)">
           {{ section.settings.contact_email | default: 'ambassadors@loam.co' }}
         </a>
-        {{ section.settings.contact_blurb_suffix | default: 'and we\'ll get back inside 48 hours.' }}
+        {{ section.settings.contact_blurb_suffix | default: "and we'll get back inside 48 hours." }}
       </p>
     </div>
 
@@ -24,7 +24,7 @@
           </div>
         {%- endif -%}
       {%- else -%}
-        {%- assign faqs = 'Do I need a huge following?,No. We care about the quality of your riding and your community more than follower count. Genuine 500-follower micro accounts often outsell 50k accounts. We approve riders at every level.|How and when do I get paid?,Bank transfer on the 1st of every month for the previous month\'s sales. No minimum threshold — even a £4 commission gets paid out.|Can I be an ambassador for other brands too?,Yes. We\'re not exclusive. The only ask is that you don\'t actively promote a direct competitor on the same post.|What counts as a sale?,Anything purchased through your unique link or with your discount code within 30 days of clicking. Returns are deducted at the next payout.|How do I move up a tier?,Hit the quarterly sales threshold. Tier reviews run on the 1st of Jan, Apr, Jul, Oct. Upgrades are automatic.|Do I have to make a certain number of posts?,No quotas. We\'d rather you post when you\'ve actually got something to say.|Can I work with my own discount codes?,Your audience gets your tier discount via your code. You can\'t stack additional discounts on top, and codes can\'t be used during sale events.|What if I want to leave the programme?,Email us. We\'ll close the account, pay out anything outstanding, and that\'s it. No contracts, no clawbacks.' | split: '|' -%}
+        {%- assign faqs = "Do I need a huge following?,No. We care about the quality of your riding and your community more than follower count. Genuine 500-follower micro accounts often outsell 50k accounts. We approve riders at every level.|How and when do I get paid?,Bank transfer on the 1st of every month. No minimum threshold — even a £4 commission gets paid out.|Can I be an ambassador for other brands too?,Yes. We are not exclusive. The only ask is that you do not actively promote a direct competitor on the same post.|What counts as a sale?,Anything purchased through your unique link or with your discount code within 30 days of clicking. Returns are deducted at the next payout.|How do I move up a tier?,Hit the quarterly sales threshold. Tier reviews run on the 1st of Jan, Apr, Jul, Oct. Upgrades are automatic.|Do I have to make a certain number of posts?,No quotas. We prefer you post when you have something real to say.|Can I work with my own discount codes?,Your audience gets your tier discount via your code. You cannot stack additional discounts on top, and codes cannot be used during sale events.|What if I want to leave the programme?,Email us. We will close the account, pay out anything outstanding, and that is it. No contracts, no clawbacks." | split: "|" -%}
         {%- assign i = 0 -%}
         {%- for item in faqs -%}
           {%- if forloop.index0 == 0 or forloop.index0 == 2 or forloop.index0 == 4 or forloop.index0 == 6 -%}
