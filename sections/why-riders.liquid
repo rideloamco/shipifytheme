@@ -1,0 +1,61 @@
+<section id="why" class="section-why">
+  <div class="section-why__header">
+    <p class="eyebrow">{{ section.settings.eyebrow | default: 'WHY RIDERS CHOOSE LOAM CO.' }}</p>
+    <h2 class="section-why__heading">{{ section.settings.heading | default: 'Four things, done properly.' }}</h2>
+  </div>
+
+  <div class="section-why__grid">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        <div class="section-why__item" {{ block.shopify_attributes }}>
+          <div class="section-why__num">{{ block.settings.number }}</div>
+          <div class="section-why__title">{{ block.settings.title }}</div>
+          <div class="section-why__desc">{{ block.settings.description }}</div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="section-why__item">
+        <div class="section-why__num">01</div>
+        <div class="section-why__title">TRAIL-TESTED DURABILITY</div>
+        <div class="section-why__desc">Built to last in mud, rain, and dust. Tested in the South Wales Valleys before it ever ships.</div>
+      </div>
+      <div class="section-why__item">
+        <div class="section-why__num">02</div>
+        <div class="section-why__title">BREATHABLE COMFORT</div>
+        <div class="section-why__desc">Engineered fabrics designed for long climbs and longer descents.</div>
+      </div>
+      <div class="section-why__item">
+        <div class="section-why__num">03</div>
+        <div class="section-why__title">MODERN STYLE</div>
+        <div class="section-why__desc">Ride gear that looks the part on the bike and at the pub afterwards.</div>
+      </div>
+      <div class="section-why__item">
+        <div class="section-why__num">04</div>
+        <div class="section-why__title">SUSTAINABLE CHOICE</div>
+        <div class="section-why__desc">Recycled fabrics. Plastic-free packaging. No bullshit greenwashing.</div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Riders",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "WHY RIDERS CHOOSE LOAM CO." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Four things, done properly." }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "TRAIL-TESTED DURABILITY" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Built to last in mud, rain, and dust." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Why Riders" }]
+}
+{% endschema %}
