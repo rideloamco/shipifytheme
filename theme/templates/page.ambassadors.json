@@ -2,32 +2,10 @@
   "sections": {
     "ambassadors-hero": {
       "type": "ambassadors-hero",
-      "settings": {},
-      "blocks": {
-        "s1": { "type": "stat", "settings": { "number": "15%", "label": "BASE COMMISSION" } },
-        "s2": { "type": "stat", "settings": { "number": "£0", "label": "JOINING FEE" } },
-        "s3": { "type": "stat", "settings": { "number": "7d", "label": "APPLICATION TURNAROUND" } },
-        "s4": { "type": "stat", "settings": { "number": "30d", "label": "PAYOUT CYCLE" } }
-      },
-      "block_order": ["s1", "s2", "s3", "s4"]
-    },
-    "marquee": {
-      "type": "marquee",
-      "settings": {
-        "text": "RIDE WITH US|GET PAID|NO QUOTAS|NO EXCLUSIVITY",
-        "theme": "dark"
-      }
+      "settings": {}
     },
     "how-it-works": {
       "type": "how-it-works",
-      "settings": {}
-    },
-    "commission-table": {
-      "type": "commission-table",
-      "settings": {}
-    },
-    "faqs": {
-      "type": "faqs",
       "settings": {}
     },
     "apply-form": {
@@ -40,10 +18,7 @@
   },
   "order": [
     "ambassadors-hero",
-    "marquee",
     "how-it-works",
-    "commission-table",
-    "faqs",
     "apply-form"
   ]
 }
