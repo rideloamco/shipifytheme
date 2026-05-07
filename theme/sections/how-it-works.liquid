@@ -1,6 +1,6 @@
 <section id="how" class="section-how">
   <p class="eyebrow">{{ section.settings.eyebrow | default: 'HOW IT WORKS' }}</p>
-  <h2 class="section-how__heading">{{ section.settings.heading | default: 'Four steps. No gatekeeping.' }}</h2>
+  <h2 class="section-how__heading">{{ section.settings.heading | default: 'Three steps. No gatekeeping.' }}</h2>
 
   <div class="section-how__grid">
     {%- for block in section.blocks -%}
@@ -10,7 +10,7 @@
         <div class="section-how__desc">{{ block.settings.description }}</div>
       </div>
     {%- else -%}
-      {%- assign steps = '01,APPLY,Fill out the form below. Tell us about your riding and your audience.|02,GET YOUR LINK,Approved riders get a custom code, tracking dashboard, and free welcome kit.|03,MAKE CONTENT,Post, ride, share. Your audience gets 10% off. You earn on every sale.|04,GET PAID,Monthly bank transfer. No minimum threshold. No invoices. No faff.' | split: '|' -%}
+      {%- assign steps = '01,JOIN,Sign up through the GoAffPro portal in minutes. No joining fee. No exclusivity.|02,ADVERTISE,Share your unique tracking link and discount code with your audience. Your followers save 10%.|03,EARN MONEY,Earn 15% commission on every sale through your link. Paid monthly by bank transfer. No invoices. No faff.' | split: '|' -%}
       {%- for step in steps -%}
         {%- assign parts = step | split: ',' -%}
         <div class="section-how__item">

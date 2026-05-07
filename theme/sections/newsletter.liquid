@@ -7,11 +7,19 @@
     <div>
       <p class="section-newsletter__body">{{ section.settings.body | default: 'Trail tips, product drops, and exclusive offers. No marketing fluff.' }}</p>
 
-      {% form 'customer', id: 'newsletter-form', class: 'newsletter-form js-newsletter-form' %}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder | default: 'rider@trails.uk' }}" aria-label="Email address" required>
-        <button type="submit">JOIN</button>
-      {% endform %}
+      {% if section.settings.mailchimp_action != blank %}
+        <form action="{{ section.settings.mailchimp_action }}" method="post" class="newsletter-form" target="_blank" novalidate>
+          <input type="hidden" name="b_{{ section.settings.mailchimp_u }}_{{ section.settings.mailchimp_id }}" tabindex="-1" value="">
+          <input type="email" name="EMAIL" placeholder="{{ section.settings.placeholder | default: 'rider@trails.uk' }}" aria-label="Email address" required>
+          <button type="submit">JOIN</button>
+        </form>
+      {% else %}
+        {% form 'customer', id: 'newsletter-form', class: 'newsletter-form js-newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder | default: 'rider@trails.uk' }}" aria-label="Email address" required>
+          <button type="submit">JOIN</button>
+        {% endform %}
+      {% endif %}
 
       <div class="newsletter-socials">
         {% if section.settings.instagram_url != blank %}
@@ -50,7 +58,15 @@
     { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "rider@trails.uk" },
     { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
     { "type": "url", "id": "tiktok_url", "label": "TikTok URL" },
-    { "type": "url", "id": "youtube_url", "label": "YouTube URL" }
+    { "type": "url", "id": "youtube_url", "label": "YouTube URL" },
+    {
+      "type": "text",
+      "id": "mailchimp_action",
+      "label": "Mailchimp form action URL",
+      "info": "Paste your Mailchimp list subscribe URL here (from Mailchimp embed code). Leave blank to use Shopify's built-in email capture."
+    },
+    { "type": "text", "id": "mailchimp_u", "label": "Mailchimp u value", "info": "Found in Mailchimp embed code: name=\"b_XXXX_...\"" },
+    { "type": "text", "id": "mailchimp_id", "label": "Mailchimp list ID", "info": "Found in Mailchimp embed code: name=\"b_..._XXXX\"" }
   ],
   "presets": [{ "name": "Newsletter" }]
 }

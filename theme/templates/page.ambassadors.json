@@ -32,7 +32,10 @@
     },
     "apply-form": {
       "type": "apply-form",
-      "settings": {}
+      "settings": {
+        "goaffpro_url": "https://loam-co-2.goaffpro.com/",
+        "goaffpro_login_url": "https://portal.goaffpro.com"
+      }
     }
   },
   "order": [
