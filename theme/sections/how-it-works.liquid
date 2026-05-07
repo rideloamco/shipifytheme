@@ -5,7 +5,7 @@
   <div class="section-how__grid">
     {%- for block in section.blocks -%}
       <div class="section-how__item" {{ block.shopify_attributes }}>
-        <div class="section-how__num">{{ block.settings.number | default: forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+        <div class="section-how__num">{{ block.settings.number }}</div>
         <div class="section-how__title">{{ block.settings.title }}</div>
         <div class="section-how__desc">{{ block.settings.description }}</div>
       </div>
