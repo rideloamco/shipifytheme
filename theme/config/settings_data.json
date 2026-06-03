@@ -57,7 +57,7 @@
         "settings": {
           "eyebrow": "FROM THE LOAM JOURNAL",
           "heading": "Trail notes",
-          "blog": "",
+          "blog": "blog",
           "posts_to_show": 3
         }
       },
