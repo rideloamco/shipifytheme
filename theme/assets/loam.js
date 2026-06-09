@@ -273,6 +273,38 @@
     });
   });
 
+  /* ── Mobile navigation ───────────────────────────────────────────────────── */
+  const mobileToggle = document.querySelector('.mobile-nav-toggle');
+  const mobileMenu   = document.getElementById('mobile-menu');
+
+  function openMobileMenu() {
+    mobileMenu.classList.add('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
+    mobileToggle.classList.add('is-open');
+    mobileToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('is-open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    mobileToggle.classList.remove('is-open');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.contains('is-open') ? closeMobileMenu() : openMobileMenu();
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMobileMenu();
+    });
+  }
+
   /* ── Init: refresh cart count on page load ───────────────────────────────── */
   fetchCart().then(cart => {
     document.querySelectorAll('.cart-count').forEach(el => {
